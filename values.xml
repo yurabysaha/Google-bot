@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<data>
+    <links>
+        <link x="1">
+            <mylink>
+                https://www.quora.com/Do-teachers-know-when-students-are-texting
+            </mylink>
+        </link>
+    </links>
+
+    <users>
+<user x="1">
+<email>tester.vitalii@gmail.com</email>
+<password>123456</password>
+</user> 
+<user x="2">
+<email>test2@test.com</email>
+<password>123456</password>
+</user>    
+</users>
+</data>
