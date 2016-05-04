@@ -13,7 +13,7 @@ class QuoraTest(unittest.TestCase):
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--proxy-server=http://%s' % PROXY)
 
-        chrome = webdriver.Chrome(chrome_options=chrome_options)
+        chrome = webdriver.Chrome('/usr/local/bin/chromedriver', chrome_options=chrome_options)
 
         tree = ET.parse('values.xml')
         lst = tree.findall('links/link')
