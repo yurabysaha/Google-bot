@@ -32,45 +32,79 @@ class QuoraTest(unittest.TestCase):
         loginbuttonXpath = "//input[@value='Login']"
         allowPasswordLessXpath = "//input[@name='allow_passwordless']"
         upvoteXpath = "//span[text() = 'Upvote']"
+        upvotedXpath = "//span[text() = 'Upvoted']"
         topmenuXpath = "//span[@class='user']"
         logoutXpath = "//a[text() = 'Logout']"
-
+        continueWithEmailXpath = "//a[text() = 'Login As Another User']"
+        loginfieldasanotherXpath = "//input[@placeholder='Email']"
+        passwordfieldasanotherXpath = "//input[@placeholder='Password']"
+        remembermecheckboxXpath = "//input[@name='allow_passwordless']"
+        loginasanotheButtonXpath = "//input[@value='Login']"
         tree = ET.parse('values.xml')
         root = tree.getroot()
         lst = tree.findall('users/user')
 
         for item in lst:
-
-            time.sleep(2)
-            signinbutttonElement = driver.find_element_by_xpath(signinbuttonXpath)
-            signinbutttonElement.click()
-            time.sleep(5)
-            loginlinkElement = driver.find_element_by_xpath(loginlinkXpath)
-            loginlinkElement.click()
             time.sleep(2)
             emailvalue = item.find('email').text
-            loginFieldElement = driver.find_element_by_xpath(loginFieldXpath)
-            time.sleep(5)
-            loginFieldElement.click()
-            loginFieldElement.clear()
-            loginFieldElement.send_keys(emailvalue)
             passvalue = item.find('password').text
-            passwordFieldElement = driver.find_element_by_xpath(passworFieldXpath)
-            passwordFieldElement.clear()
-            passwordFieldElement.send_keys(passvalue)
-            time.sleep(2)
-            allowPasswordLessElement = driver.find_element_by_xpath(allowPasswordLessXpath)
-            allowPasswordLessElement.click()
-            loginbuttonElement = driver.find_element_by_xpath(loginbuttonXpath)
             time.sleep(5)
-            loginbuttonElement.click()
+            try:
+                signinbutttonElement = driver.find_element_by_xpath(signinbuttonXpath)
+                signinbutttonElement.click()
+                time.sleep(5)
+                loginlinkElement = driver.find_element_by_xpath(loginlinkXpath)
+                loginlinkElement.click()
+                time.sleep(2)
+                loginFieldElement = driver.find_element_by_xpath(loginFieldXpath)
+                time.sleep(5)
+                loginFieldElement.click()
+                loginFieldElement.clear()
+                loginFieldElement.send_keys(emailvalue)
+                passwordFieldElement = driver.find_element_by_xpath(passworFieldXpath)
+                passwordFieldElement.clear()
+                passwordFieldElement.send_keys(passvalue)
+                time.sleep(2)
+                allowPasswordLessElement = driver.find_element_by_xpath(allowPasswordLessXpath)
+                allowPasswordLessElement.click()
+                loginbuttonElement = driver.find_element_by_xpath(loginbuttonXpath)
+                time.sleep(5)
+                loginbuttonElement.click()
+            except:
+                continueWithEmailElement = driver.find_element_by_xpath(continueWithEmailXpath)
+                continueWithEmailElement.click()
+                time.sleep(4)
+                loginfieldasanotherElement = driver.find_element_by_xpath(loginfieldasanotherXpath)
+                loginfieldasanotherElement.clear()
+                loginfieldasanotherElement.send_keys(emailvalue)
+                time.sleep(2)
+                passwordfieldasanotherElement = driver.find_element_by_xpath(passwordfieldasanotherXpath)
+                passwordfieldasanotherElement.clear()
+                passwordfieldasanotherElement.send_keys(passvalue)
+                time.sleep(2)
+                remembermecheckboxElement = driver.find_element_by_xpath(remembermecheckboxXpath)
+                remembermecheckboxElement.click()
+                time.sleep(2)
+                loginasanotheButtonElement = driver.find_element_by_xpath(loginasanotheButtonXpath)
+                loginasanotheButtonElement.click()
             time.sleep(7)
             try:
-                upvoteElement = driver.find_element_by_xpath(upvoteXpath)
-                upvoteElement.click()
+                try:
+                    upvoteElement = driver.find_element_by_xpath(upvoteXpath)
+                    upvoteElement.click()
+                except:
+                    upvotedElement = driver.find_element_by_xpath(upvotedXpath)
+                    upvotedElement.click()
             except:
+                time.sleep(7)
                 driver.execute_script("window.scrollTo(0, 500)")
-                upvoteElement.click()
+                time.sleep(4)
+                try:
+                    upvoteElement = driver.find_element_by_xpath(upvoteXpath)
+                    upvoteElement.click()
+                except:
+                    upvotedElement = driver.find_element_by_xpath(upvotedXpath)
+                    upvotedElement.click()
             time.sleep(3)
             topmenuElement = driver.find_element_by_xpath(topmenuXpath)
             topmenuElement.click()
