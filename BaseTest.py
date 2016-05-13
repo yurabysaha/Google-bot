@@ -11,10 +11,9 @@ import unittest
 class QuoraTest(unittest.TestCase):
 
     def setUp(self):
-        PROXYList = ["203.66.159.44:3128", "31.207.0.99:3128", "218.205.17.79:3128"]
+        PROXYList = ["203.66.159.44:3128", "31.207.0.99:3128", "219.255.197.90:3128", "64.103.27.184:8080", "209.242.141.60:8080", "122.226.166.231:8080"]
         random.shuffle(PROXYList)
         PROXY = random.choice(PROXYList)
-
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--proxy-server=http://%s' % PROXY)
 
