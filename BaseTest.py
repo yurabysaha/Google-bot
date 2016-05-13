@@ -106,7 +106,7 @@ class QuoraTest(unittest.TestCase):
                         except:
                             upvotedElement = driver.find_element_by_xpath(upvotedXpath)
                             upvotedElement.click()
-                    seconds_list = [300, 600, 900, 1200]
+                    seconds_list = [300, 333, 444, 555, 233, 450]
                     random.shuffle(seconds_list)
                     seconds = random.choice(seconds_list)
                     time.sleep(seconds)
