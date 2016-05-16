@@ -105,7 +105,7 @@ class QuoraTest(unittest.TestCase):
                         except:
                             upvotedElement = driver.find_element_by_xpath(upvotedXpath)
                             upvotedElement.click()
-                    seconds_list = [300, 333, 444, 555, 233, 450]
+                    seconds_list = [1200, 1220, 1230, 1240, 1250, 1245]
                     random.shuffle(seconds_list)
                     seconds = random.choice(seconds_list)
                     time.sleep(seconds)
@@ -117,7 +117,7 @@ class QuoraTest(unittest.TestCase):
                     removebuttonElement = driver.find_element_by_xpath(removebuttonXpath)
                     removebuttonElement.click()
                     time.sleep(6)
-
+                    print emailvalue
 
 
                     #tree = ET.parse('values.xml')
