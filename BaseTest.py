@@ -84,11 +84,9 @@ class RobotTest(unittest.TestCase):
             except:
                 doc = ET.parse('link.xml')
                 root = doc.getroot()
-                projects = ET.Element("record")
-                django1 = ET.Element("link")
-                django1.text = grouplinks
-                projects.append(django1)
-                root.append(projects)
+                new = ET.Element('glink')
+                new.text = grouplinks
+                root.append(new)
 
                 doc.write('link.xml', encoding="utf-8", xml_declaration=True)
                 suma = suma +1
