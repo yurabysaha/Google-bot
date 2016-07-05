@@ -1,19 +1,19 @@
 import tkMessageBox
+import Tkinter as tk
 
-from tkinter import *
 import xml.etree.ElementTree as ET
 
 
 class UpdateText:
     def __init__(self, body):
-        self.text = Text(body,
+        self.text = tk.Text(body,
                          font="Verdana 12",
                          width=50, height=7)
         self.text.grid(row = 3, column = 2)
 
-        title = Label(body, text="Text", font="Arial 12")
+        title = tk.Label(body, text="Text", font="Arial 12")
         title.grid(row = 3, column = 1)
-        but = Button(body,
+        but = tk.Button(body,
                      text="Update",
                      width=6, height=1,
                      bg="red", fg="black")

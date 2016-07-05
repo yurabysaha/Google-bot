@@ -1,21 +1,21 @@
 import tkMessageBox
 import tkSimpleDialog
+import Tkinter as tk
 
-from tkinter import *
 import xml.etree.ElementTree as ET
 
 
 class UpdateLink:
     def __init__(self, body):
-        self.link = Entry(body,
+        self.link = tk.Entry(body,
                          font="Verdana 12",
                           width=50)
         self.link.grid(row = 1, column = 2)
 
-        title = Label(body, text="Picture link", font="Arial 12")
+        title = tk.Label(body, text="Picture link", font="Arial 12")
         title.grid(row = 1, column = 1)
 
-        but = Button(body,
+        but = tk.Button(body,
                             text="Update",
                             width=6, height=1,
                             bg="red", fg="black")
@@ -34,7 +34,6 @@ class UpdateLink:
             "Updated",
             "Picture link is updated"
         )
-
 
 
 

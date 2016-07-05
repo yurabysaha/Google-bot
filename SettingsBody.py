@@ -1,47 +1,48 @@
 import tkMessageBox
+import Tkinter as tk
 
-from tkinter import *
+
 import xml.etree.ElementTree as ET
 
 
 class UserFields:
     def __init__(self, body, niz):
-        title = Label(body, text="Facebook User", font="Arial 14")
+        title = tk.Label(body, text="Facebook User", font="Arial 14")
         title.grid(row=0, column = 1, columnspan=2)
 
-        title = Label(body, text="Current User", font="Arial 13")
+        title = tk.Label(body, text="Current User", font="Arial 13")
         title.grid(row=1, column=1)
 
         doc = ET.parse('user.xml')
         mail = doc.find('email').text
         password = doc.find('password').text
 
-        titleEmail = Label(body, text="Email : " + mail, font="Arial 12")
+        titleEmail = tk.Label(body, text="Email : " + mail, font="Arial 12")
         titleEmail.grid(row=2, column=1, columnspan=2)
 
-        titlePassword = Label(body, text="Password : " + password, font="Arial 12")
+        titlePassword = tk.Label(body, text="Password : " + password, font="Arial 12")
         titlePassword.grid(row=3, column=1, columnspan=2)
 
-        title = Label(body, text="Change User", font="Arial 13")
+        title = tk.Label(body, text="Change User", font="Arial 13")
         title.grid(row=4, column=1)
-        self.email = Entry(body,
+        self.email = tk.Entry(body,
                          font="Verdana 12",
                           width=50)
         self.email.grid(row = 5, column = 2)
 
-        title = Label(body, text="Login", font="Arial 12")
+        title = tk.Label(body, text="Login", font="Arial 12")
         title.grid(row = 5, column = 1)
 
-        self.password = Entry(body,
+        self.password = tk.Entry(body,
                            font="Verdana 12",
                            width=50)
 
         self.password.grid(row=6, column=2)
 
-        title = Label(body, text="Password", font="Arial 12")
+        title = tk.Label(body, text="Password", font="Arial 12")
         title.grid(row=6, column=1)
 
-        but = Button(niz,
+        but = tk.Button(niz,
                           text="Update",
                           width=6, height=1,
                           bg="red", fg="black")
@@ -63,5 +64,4 @@ class UserFields:
             "Updated",
             "User Email&Password is updated"
         )
-
 

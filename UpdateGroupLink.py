@@ -1,19 +1,20 @@
 import tkMessageBox
+import Tkinter as tk
 
-from tkinter import *
+
 import xml.etree.ElementTree as ET
 
 
 class GroupLinkField:
     def __init__(self, body):
-        self.glink = Text(body,
+        self.glink = tk.Text(body,
                          font="Verdana 12",
                          width=50, height=10)
         self.glink.grid(row = 2, column = 2)
 
-        title = Label(body, text="Group Link", font="Arial 12")
+        title = tk.Label(body, text="Group Link", font="Arial 12")
         title.grid(row = 2, column = 1)
-        but = Button(body,
+        but = tk.Button(body,
                      text="Update",
                      width=6, height=1,
                      bg="red", fg="black")
