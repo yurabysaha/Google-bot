@@ -12,14 +12,13 @@ import unittest
 from xml.etree import ElementTree
 from xml.dom import minidom
 
-notPostedC = 0
-class RobotTest(unittest.TestCase):
 
+class RobotTest(unittest.TestCase):
     def setUp(self):
-        #PROXYList = ["203.66.159.44:3128", "31.207.0.99:3128", "219.255.197.90:3128", "64.103.27.184:8080", "209.242.141.60:8080", "122.226.166.231:8080"]
-        #random.shuffle(PROXYList)
-        #PROXY = random.choice(PROXYList)
-        #chrome_options.add_argument('--proxy-server=http://%s' % PROXY)
+        # PROXYList = ["203.66.159.44:3128", "31.207.0.99:3128", "219.255.197.90:3128", "64.103.27.184:8080", "209.242.141.60:8080", "122.226.166.231:8080"]
+        # random.shuffle(PROXYList)
+        # PROXY = random.choice(PROXYList)
+        # chrome_options.add_argument('--proxy-server=http://%s' % PROXY)
         chrome_options = webdriver.ChromeOptions()
         prefs = {"profile.default_content_setting_values.notifications": 2}
         chrome_options.add_experimental_option("prefs", prefs)
@@ -34,7 +33,6 @@ class RobotTest(unittest.TestCase):
     def test_login(self):
         driver = self.driver
 
-
         tree = ET.parse('text.xml')
 
         text = tree.find('text').text
@@ -45,8 +43,6 @@ class RobotTest(unittest.TestCase):
         textArea = "_4h98"
         btn = "_332r"
         treeuser = ET.parse('user.xml')
-
-
 
         time.sleep(2)
         emailvalue = treeuser.find('email').text
@@ -61,7 +57,9 @@ class RobotTest(unittest.TestCase):
 
         tree22 = ET.parse('groupLink.xml')
         lstgroup = tree22.findall('glink')
+        suma = 0
         for i in lstgroup:
+
             try:
                 grouplinks = i.text
                 driver.get(grouplinks)
@@ -75,7 +73,7 @@ class RobotTest(unittest.TestCase):
                 picture.send_keys(Keys.CONTROL + 'a')
                 time.sleep(1)
                 picture.send_keys(Keys.BACKSPACE)
-                #picture.send_keys("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b")
+                # picture.send_keys("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b")
                 time.sleep(2)
                 picture.send_keys(text)
                 time.sleep(5)
@@ -93,16 +91,20 @@ class RobotTest(unittest.TestCase):
                 root.append(projects)
 
                 doc.write('link.xml', encoding="utf-8", xml_declaration=True)
+                suma = suma +1
 
-                global notPostedC
-                notPostedC = +1
                 continue
+        text_file = open("Statistic.txt", "w")
+        text_file.write("Purchase Amount: %s" % suma)
+        text_file.close()
 
+        driver.close()
 
 def suite():
     test_suite = unittest.TestSuite()
     test_suite.addTest(unittest.makeSuite(RobotTest))
     return test_suite
+
 
 if __name__ == '__main__':
     unittest.TextTestRunner().run(suite())

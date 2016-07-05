@@ -1,3 +1,5 @@
+import lala as lala
+
 import SettingsBody
 from BaseTest import *
 from UpdatePictureLink import *
@@ -21,7 +23,7 @@ class But_start:
     def startBot(self, event):
 
         BaseTest.unittest.TextTestRunner().run(suite())
-        Statistic()
+
 
 
 menu = Frame(root, width=700, height=27, bg="darkred")
@@ -86,7 +88,7 @@ class Statistic:
     def __init__(self):
         body.grid_forget()
         niz.grid_forget()
-        notPostedL = Label(statisticBody, text="Not Posted in : " + notPostedC.__str__() + " groups", font="Arial 12")
+        notPostedL = Label(statisticBody, text="Not Posted in : " + " groups", font="Arial 12")
         notPostedL.grid(row=1, column=1, columnspan=2)
         statisticBody.grid(row=2)
         statisticNiz.grid(row=3)
