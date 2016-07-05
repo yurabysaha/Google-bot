@@ -57,7 +57,8 @@ class RobotTest(unittest.TestCase):
 
         tree22 = ET.parse('groupLink.xml')
         lstgroup = tree22.findall('glink')
-        suma = 0
+        not_posted = 0
+        posted = 0
         for i in lstgroup:
 
             try:
@@ -81,19 +82,21 @@ class RobotTest(unittest.TestCase):
                 time.sleep(5)
                 postBtn.click()
                 time.sleep(10)
+                posted = posted + 1
+
             except:
                 doc = ET.parse('link.xml')
                 root = doc.getroot()
                 new = ET.Element('glink')
                 new.text = grouplinks
                 root.append(new)
-
                 doc.write('link.xml', encoding="utf-8", xml_declaration=True)
-                suma = suma +1
-
+                not_posted = not_posted +1
                 continue
+
         text_file = open("Statistic.txt", "w")
-        text_file.write("Purchase Amount: %s" % suma)
+        fuck = ["Not Posted in : %s " % not_posted + "\n", "Posted in : %s" % posted]
+        text_file.writelines(fuck)
         text_file.close()
 
         driver.close()
