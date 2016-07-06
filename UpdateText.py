@@ -24,7 +24,7 @@ class UpdateText:
         doc = ET.parse('text.xml')
         root = doc.getroot()
         text = doc.find('text')
-        text.text = self.text.get(1.0, END)
+        text.text = self.text.get(1.0, tk.END)
 
         doc.write('text.xml', encoding="utf-8", xml_declaration=True)
         tkMessageBox.showinfo(

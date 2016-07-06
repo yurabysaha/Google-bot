@@ -28,7 +28,7 @@ class GroupLinkField:
         for item in deleted:
           root.remove(item)
 
-        newLink = self.glink.get(1.0, END)
+        newLink = self.glink.get(1.0, tk.END)
         pp = newLink.split()
         for item in pp:
             new = ET.Element('glink')
