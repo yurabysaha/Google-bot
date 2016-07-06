@@ -4,7 +4,13 @@ import Tkinter as tk
 
 
 import xml.etree.ElementTree as ET
-ROOT_PATH=os.getcwd()
+def xmlpath():
+    if os.uname()[0] == "Linux":
+        return '/'
+    else:
+        return '\\'
+
+ROOT_PATH=os.getcwd() + xmlpath()
 
 class GroupLinkField:
     def __init__(self, body):
@@ -23,7 +29,7 @@ class GroupLinkField:
         but.grid(row=2, column=3)
 
     def updateGroup(self, event):
-        doc = ET.parse(ROOT_PATH + '/groupLink.xml')
+        doc = ET.parse(ROOT_PATH + 'groupLink.xml')
         root = doc.getroot()
         deleted = doc.findall('glink')
         for item in deleted:
@@ -36,7 +42,7 @@ class GroupLinkField:
             new.text = item
             root.append(new)
 
-        doc.write(ROOT_PATH + '/groupLink.xml', encoding="utf-8", xml_declaration=True)
+        doc.write(ROOT_PATH + 'groupLink.xml', encoding="utf-8", xml_declaration=True)
         tkMessageBox.showinfo(
             "Updated",
             "Groups link is updated"

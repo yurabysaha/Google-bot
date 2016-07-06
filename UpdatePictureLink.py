@@ -4,7 +4,13 @@ import tkSimpleDialog
 import Tkinter as tk
 
 import xml.etree.ElementTree as ET
-ROOT_PATH=os.getcwd()
+def xmlpath():
+    if os.uname()[0] == "Linux":
+        return '/'
+    else:
+        return '\\'
+
+ROOT_PATH=os.getcwd() + xmlpath()
 
 class UpdateLink:
     def __init__(self, body):
@@ -25,12 +31,12 @@ class UpdateLink:
         but.grid(row = 1, column = 3)
 
     def updatePLink(self, event):
-        doc = ET.parse(ROOT_PATH + '/pictureLink.xml')
+        doc = ET.parse(ROOT_PATH + 'pictureLink.xml')
         root = doc.getroot()
         django = doc.find('link')
         django.text = self.link.get()
 
-        doc.write(ROOT_PATH + '/pictureLink.xml', encoding="utf-8", xml_declaration=True)
+        doc.write(ROOT_PATH + 'pictureLink.xml', encoding="utf-8", xml_declaration=True)
         tkMessageBox.showinfo(
             "Updated",
             "Picture link is updated"

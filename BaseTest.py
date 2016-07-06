@@ -12,7 +12,21 @@ from selenium.common.exceptions import NoSuchElementException
 import unittest
 from xml.etree import ElementTree
 from xml.dom import minidom
-ROOT_PATH=os.getcwd()
+
+def xmlpath():
+    if os.uname()[0] == "Linux":
+        return '/'
+    else:
+        return '\\'
+
+ROOT_PATH=os.getcwd() + xmlpath()
+
+
+def osw():
+    if os.uname()[0] == "Linux":
+        return ROOT_PATH + 'chromedriver'
+    else:
+        return ROOT_PATH + 'chromedriver.exe'
 
 class RobotTest(unittest.TestCase):
     def setUp(self):
@@ -24,26 +38,25 @@ class RobotTest(unittest.TestCase):
         prefs = {"profile.default_content_setting_values.notifications": 2}
         chrome_options.add_experimental_option("prefs", prefs)
         chrome_options.add_argument('--lang=en')
-
-        chrome = webdriver.Chrome('./chromedriver', chrome_options=chrome_options)
-
+        chrome = webdriver.Chrome(osw(), chrome_options=chrome_options)
         browserlink = 'https://facebook.com'
         chrome.get(browserlink)
+
         self.driver = chrome
 
     def test_login(self):
         driver = self.driver
 
-        tree = ET.parse(ROOT_PATH + '/text.xml')
+        tree = ET.parse(ROOT_PATH + 'text.xml')
 
         text = tree.find('text').text
-        picture = ET.parse('pictureLink.xml').find('link').text
+        picture = ET.parse(ROOT_PATH + 'pictureLink.xml').find('link').text
         emailXpath = "//*[@id='email']"
         passXpath = "//*[@id='pass']"
         loginBtnXpath = "//*[@id='u_0_o']"
         textArea = "_4h98"
         btn = "_332r"
-        treeuser = ET.parse(ROOT_PATH + '/user.xml')
+        treeuser = ET.parse(ROOT_PATH + 'user.xml')
 
         time.sleep(2)
         emailvalue = treeuser.find('email').text
@@ -56,7 +69,7 @@ class RobotTest(unittest.TestCase):
         driver.find_element_by_xpath(loginBtnXpath).click()
         time.sleep(2)
 
-        tree22 = ET.parse(ROOT_PATH + '/groupLink.xml')
+        tree22 = ET.parse(ROOT_PATH + 'groupLink.xml')
         lstgroup = tree22.findall('glink')
         not_posted = 0
         posted = 0
@@ -86,7 +99,7 @@ class RobotTest(unittest.TestCase):
                 posted = posted + 1
 
             except:
-                doc = ET.parse(ROOT_PATH + '/link.xml')
+                doc = ET.parse(ROOT_PATH + 'link.xml')
                 root = doc.getroot()
                 new = ET.Element('glink')
                 new.text = grouplinks

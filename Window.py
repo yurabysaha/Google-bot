@@ -8,7 +8,13 @@ import Tkinter as tk
 
 root = tk.Tk()
 root.title('Botter')
-ROOT_PATH = os.getcwd()
+def xmlpath():
+    if os.uname()[0] == "Linux":
+        return '/'
+    else:
+        return '\\'
+
+ROOT_PATH=os.getcwd() + xmlpath()
 
 class But_start:
     def __init__(self):
@@ -87,7 +93,7 @@ class Statistic:
     def __init__(self):
         body.grid_forget()
         niz.grid_forget()
-        file = open(ROOT_PATH + '/Statistic.txt', 'r')
+        file = open(ROOT_PATH + 'Statistic.txt', 'r')
         notPostedL = tk.Label(statisticBody, text= file.read() + " groups", font="Arial 12")
         notPostedL.grid(row=3, column=1, columnspan=2)
         statisticBody.grid(row=2)
