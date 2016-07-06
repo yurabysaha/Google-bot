@@ -1,3 +1,4 @@
+import os
 import random
 import time
 from selenium import webdriver
@@ -11,7 +12,7 @@ from selenium.common.exceptions import NoSuchElementException
 import unittest
 from xml.etree import ElementTree
 from xml.dom import minidom
-
+ROOT_PATH=os.getcwd()
 
 class RobotTest(unittest.TestCase):
     def setUp(self):
@@ -33,7 +34,7 @@ class RobotTest(unittest.TestCase):
     def test_login(self):
         driver = self.driver
 
-        tree = ET.parse('text.xml')
+        tree = ET.parse(ROOT_PATH + '/text.xml')
 
         text = tree.find('text').text
         picture = ET.parse('pictureLink.xml').find('link').text
@@ -42,7 +43,7 @@ class RobotTest(unittest.TestCase):
         loginBtnXpath = "//*[@id='u_0_o']"
         textArea = "_4h98"
         btn = "_332r"
-        treeuser = ET.parse('user.xml')
+        treeuser = ET.parse(ROOT_PATH + '/user.xml')
 
         time.sleep(2)
         emailvalue = treeuser.find('email').text
@@ -55,7 +56,7 @@ class RobotTest(unittest.TestCase):
         driver.find_element_by_xpath(loginBtnXpath).click()
         time.sleep(2)
 
-        tree22 = ET.parse('groupLink.xml')
+        tree22 = ET.parse(ROOT_PATH + '/groupLink.xml')
         lstgroup = tree22.findall('glink')
         not_posted = 0
         posted = 0
@@ -85,16 +86,16 @@ class RobotTest(unittest.TestCase):
                 posted = posted + 1
 
             except:
-                doc = ET.parse('link.xml')
+                doc = ET.parse(ROOT_PATH + '/link.xml')
                 root = doc.getroot()
                 new = ET.Element('glink')
                 new.text = grouplinks
                 root.append(new)
-                doc.write('link.xml', encoding="utf-8", xml_declaration=True)
+                doc.write(ROOT_PATH + 'link.xml', encoding="utf-8", xml_declaration=True)
                 not_posted = not_posted +1
                 continue
 
-        text_file = open("Statistic.txt", "w")
+        text_file = open(ROOT_PATH + "Statistic.txt", "w")
         fuck = ["Not Posted in : %s " % not_posted + "\n", "Posted in : %s" % posted]
         text_file.writelines(fuck)
         text_file.close()

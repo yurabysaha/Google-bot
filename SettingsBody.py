@@ -1,9 +1,10 @@
+import os
 import tkMessageBox
 import Tkinter as tk
 
 
 import xml.etree.ElementTree as ET
-
+ROOT_PATH=os.getcwd()
 
 class UserFields:
     def __init__(self, body, niz):
@@ -13,7 +14,7 @@ class UserFields:
         title = tk.Label(body, text="Current User", font="Arial 13")
         title.grid(row=1, column=1)
 
-        doc = ET.parse('user.xml')
+        doc = ET.parse(ROOT_PATH + '/user.xml')
         mail = doc.find('email').text
         password = doc.find('password').text
 
@@ -51,15 +52,15 @@ class UserFields:
         but.grid(row=1, column=3)
 
 
-    def updateUser(self, titleEmail, event):
-        doc = ET.parse('user.xml')
+    def updateUser(self, event):
+        doc = ET.parse(ROOT_PATH + '/user.xml')
 
         emailf = doc.find('email')
         emailf.text = self.email.get()
         passwordf = doc.find('password')
         passwordf.text = self.password.get()
 
-        doc.write('user.xml', encoding="utf-8", xml_declaration=True)
+        doc.write(ROOT_PATH + '/user.xml', encoding="utf-8", xml_declaration=True)
         tkMessageBox.showinfo(
             "Updated",
             "User Email&Password is updated"

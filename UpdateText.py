@@ -1,8 +1,9 @@
+import os
 import tkMessageBox
 import Tkinter as tk
 
 import xml.etree.ElementTree as ET
-
+ROOT_PATH=os.getcwd()
 
 class UpdateText:
     def __init__(self, body):
@@ -21,12 +22,12 @@ class UpdateText:
         but.grid(row=3, column=3)
 
     def updateText(self, event):
-        doc = ET.parse('text.xml')
+        doc = ET.parse(ROOT_PATH + '/text.xml')
         root = doc.getroot()
         text = doc.find('text')
         text.text = self.text.get(1.0, tk.END)
 
-        doc.write('text.xml', encoding="utf-8", xml_declaration=True)
+        doc.write(ROOT_PATH + '/text.xml', encoding="utf-8", xml_declaration=True)
         tkMessageBox.showinfo(
             "Updated",
             "New Text added"
