@@ -5,12 +5,13 @@ import BaseTest
 from UpdateGroupLink import *
 from UpdateText import UpdateText
 import Tkinter as tk
+import platform
 
 root = tk.Tk()
 root.title('Google-bot')
 
 def xmlpath():
-    if os.uname()[0] == "Linux":
+    if platform.system() == "Linux":
         return '/'
     else:
         return '\\'
