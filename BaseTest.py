@@ -50,7 +50,7 @@ class RobotTest(unittest.TestCase):
         tree = ET.parse(ROOT_PATH + 'text.xml')
 
         text = tree.find('text').text
-        picture = ET.parse(ROOT_PATH + 'pictureLink.xml').find('link').text
+        pictureLink = ET.parse(ROOT_PATH + 'pictureLink.xml').find('link').text
         emailXpath = "//*[@id='Email']"
         passXpath = "//*[@id='Passwd']"
         signinBtn = "//*[@id='gb_70']"
@@ -102,12 +102,19 @@ class RobotTest(unittest.TestCase):
                 time.sleep(2)
                 picture = driver.find_element_by_css_selector(".uNI4p>div>input")
                 time.sleep(2)
-                picture.send_keys("/home/lego/Pictures/ruby-rails.jpg")
+                picture.send_keys(pictureLink)
                 time.sleep(5)
                 postBtn = driver.find_element_by_css_selector(btn)
                 time.sleep(5)
                 postBtn.click()
                 time.sleep(10)
+
+                try:
+                    tags = driver.find_element_by_css_selector("#dwrFZd1")
+                    driver.find_element_by_css_selector("#dwrFZd1>div>div>content:first-child").click()
+                except:
+                    pass
+
                 posted = posted + 1
 
             except:
