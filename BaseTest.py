@@ -101,7 +101,7 @@ class RobotTest(unittest.TestCase):
                 picBtn.click()
                 time.sleep(2)
                 picture = driver.find_element_by_css_selector(".uNI4p>div>input")
-                time.sleep(2)
+                time.sleep(6)
                 picture.send_keys(pictureLink)
                 time.sleep(5)
                 postBtn = driver.find_element_by_css_selector(btn)
@@ -111,7 +111,7 @@ class RobotTest(unittest.TestCase):
 
                 try:
                     tags = driver.find_element_by_css_selector("#dwrFZd1")
-                    driver.find_element_by_css_selector("#dwrFZd1>div>div>content:first-child").click()
+                    driver.find_element_by_css_selector(".N9wOvf.Jxhqvd:first-child").click()
                 except:
                     pass
 
