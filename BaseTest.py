@@ -89,19 +89,21 @@ class RobotTest(unittest.TestCase):
             try:
                 grouplinks = i.text
                 driver.get(grouplinks)
-                time.sleep(8)
-                addBtn = driver.find_element_by_css_selector(".jXDCJf.Tek5Ce.BDrJf")
+                wait = WebDriverWait(driver, 10)
+                addBtn = wait.until(lambda driver: driver.find_element_by_css_selector(".jXDCJf.Tek5Ce.BDrJf"))
                 addBtn.click()
                 time.sleep(2)
-                textArea1 = driver.find_element_by_id(textArea)
-                time.sleep(2)
+                textArea1 = wait.until(lambda driver: driver.find_element_by_id(textArea))
+                time.sleep(1)
                 textArea1.send_keys(text)
                 time.sleep(2)
                 picBtn = driver.find_element_by_css_selector(".XjCfXd>div:first-child>div:first-child")
                 picBtn.click()
-                time.sleep(2)
-                picture = driver.find_element_by_css_selector(".uNI4p>div>input")
-                time.sleep(6)
+                time.sleep(5)
+                #picture = driver.find_element_by_css_selector(".uNI4p>div>input")
+
+                picture = wait.until(lambda driver: driver.find_element_by_css_selector(".uNI4p>div>input"))
+                time.sleep(1)
                 picture.send_keys(pictureLink)
                 time.sleep(5)
                 postBtn = driver.find_element_by_css_selector(btn)
@@ -110,7 +112,7 @@ class RobotTest(unittest.TestCase):
                 time.sleep(5)
 
                 try:
-                    driver.find_element_by_xpath(".//*[@id='dwrFZd9']/div/div/content[1]/div[2]").click()
+                    driver.find_element_by_css_selector(".PbnGhe.oJeWuf.fb0g6.eejsDc>div>div>content:first-of-type").click()
                 except:
                     pass
 
