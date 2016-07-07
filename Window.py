@@ -7,7 +7,8 @@ from UpdateText import UpdateText
 import Tkinter as tk
 
 root = tk.Tk()
-root.title('Botter')
+root.title('Google-bot')
+
 def xmlpath():
     if os.uname()[0] == "Linux":
         return '/'
@@ -39,6 +40,8 @@ Settingsniz = tk.Frame(root, width=500, height=150)
 statisticBody =  tk.Frame(root, width=500, height=200)
 statisticNiz = tk.Frame(root, width=500, height=150)
 menu.grid(row=1, sticky='W')
+
+
 body.grid(row=2)
 niz.grid(row=3)
 
