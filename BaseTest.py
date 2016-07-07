@@ -107,11 +107,10 @@ class RobotTest(unittest.TestCase):
                 postBtn = driver.find_element_by_css_selector(btn)
                 time.sleep(5)
                 postBtn.click()
-                time.sleep(10)
+                time.sleep(5)
 
                 try:
-                    tags = driver.find_element_by_css_selector("#dwrFZd1")
-                    driver.find_element_by_css_selector(".N9wOvf.Jxhqvd:first-child").click()
+                    driver.find_element_by_xpath(".//content[1]/div[2]").click()
                 except:
                     pass
 
