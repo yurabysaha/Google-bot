@@ -14,10 +14,10 @@ ROOT_PATH=os.getcwd() + xmlpath()
 
 class UserFields:
     def __init__(self, body, niz):
-        photo = tk.PhotoImage(file="logo.png")
-        w = tk.Label(body, image=photo)
-        w.photo = photo
-        w.grid(row=0, column = 1)
+        #photo = tk.PhotoImage(file=ROOT_PATH + "logo.png")
+        #w = tk.Label(body, image=photo)
+        #w.photo = photo
+        #w.grid(row=0, column = 1)
         title = tk.Label(body, text="Google+ User", font="Arial 14")
         title.grid(row=0, column = 1, columnspan=2)
 

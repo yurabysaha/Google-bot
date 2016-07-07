@@ -23,7 +23,7 @@ ROOT_PATH=os.getcwd() + xmlpath()
 
 
 def osw():
-    if os.uname()[0] == "Linux":
+    if platform.system() == "Linux":
         return ROOT_PATH + 'chromedriver'
     else:
         return ROOT_PATH + 'chromedriver.exe'
