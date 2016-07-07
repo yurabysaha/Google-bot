@@ -39,7 +39,7 @@ class RobotTest(unittest.TestCase):
         chrome_options.add_experimental_option("prefs", prefs)
         chrome_options.add_argument('--lang=en')
         chrome = webdriver.Chrome(osw(), chrome_options=chrome_options)
-        browserlink = 'https://facebook.com'
+        browserlink = 'https://plus.google.com'
         chrome.get(browserlink)
 
         self.driver = chrome
@@ -51,23 +51,34 @@ class RobotTest(unittest.TestCase):
 
         text = tree.find('text').text
         picture = ET.parse(ROOT_PATH + 'pictureLink.xml').find('link').text
-        emailXpath = "//*[@id='email']"
-        passXpath = "//*[@id='pass']"
-        loginBtnXpath = "//*[@id='u_0_o']"
-        textArea = "_4h98"
-        btn = "_332r"
+        emailXpath = "//*[@id='Email']"
+        passXpath = "//*[@id='Passwd']"
+        signinBtn = "//*[@id='gb_70']"
+        loginBtnXpath = "//*[@id='signIn']"
+        textArea = "XPxXbf"
+        btn = ".iHCNId>div:last-child"
         treeuser = ET.parse(ROOT_PATH + 'user.xml')
 
+
+        driver.find_element_by_xpath(signinBtn).click()
         time.sleep(2)
         emailvalue = treeuser.find('email').text
-        passvalue = treeuser.find('password').text
         time.sleep(2)
         driver.find_element_by_xpath(emailXpath).send_keys(emailvalue)
         time.sleep(1)
+        nextBtn = "//*[@id='next']"
+        driver.find_element_by_xpath(nextBtn).click()
+        time.sleep(2)
+        passvalue = treeuser.find('password').text
         driver.find_element_by_xpath(passXpath).send_keys(passvalue)
-        time.sleep(1)
         driver.find_element_by_xpath(loginBtnXpath).click()
         time.sleep(2)
+        try:
+            newDesign = driver.find_element_by_class_name("GWQXxc")
+            newDesign.click()
+
+        except:
+            pass
 
         tree22 = ET.parse(ROOT_PATH + 'groupLink.xml')
         lstgroup = tree22.findall('glink')
@@ -78,21 +89,22 @@ class RobotTest(unittest.TestCase):
             try:
                 grouplinks = i.text
                 driver.get(grouplinks)
+                time.sleep(8)
+                addBtn = driver.find_element_by_css_selector(".jXDCJf.Tek5Ce.BDrJf")
+                addBtn.click()
                 time.sleep(2)
-                textArea1 = driver.find_element_by_class_name(textArea)
+                textArea1 = driver.find_element_by_id(textArea)
                 time.sleep(2)
-                textArea1.send_keys(picture)
-                time.sleep(10)
-                picture = driver.find_element_by_class_name("_5rpu")
-                time.sleep(1)
-                picture.send_keys(Keys.CONTROL + 'a')
-                time.sleep(1)
-                picture.send_keys(Keys.BACKSPACE)
-                # picture.send_keys("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b")
+                textArea1.send_keys(text)
                 time.sleep(2)
-                picture.send_keys(text)
+                picBtn = driver.find_element_by_css_selector(".XjCfXd>div:first-child>div:first-child")
+                picBtn.click()
+                time.sleep(2)
+                picture = driver.find_element_by_css_selector(".uNI4p>div>input")
+                time.sleep(2)
+                picture.send_keys("/home/lego/Pictures/ruby-rails.jpg")
                 time.sleep(5)
-                postBtn = driver.find_element_by_class_name(btn)
+                postBtn = driver.find_element_by_css_selector(btn)
                 time.sleep(5)
                 postBtn.click()
                 time.sleep(10)
