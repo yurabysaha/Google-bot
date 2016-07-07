@@ -110,7 +110,7 @@ class RobotTest(unittest.TestCase):
                 time.sleep(5)
 
                 try:
-                    driver.find_element_by_xpath(".//content[1]/div[2]").click()
+                    driver.find_element_by_xpath(".//*[@id='dwrFZd9']/div/div/content[1]/div[2]").click()
                 except:
                     pass
 
