@@ -6,9 +6,13 @@ from UpdateGroupLink import *
 from UpdateText import UpdateText
 import Tkinter as tk
 import platform
+from tkinter import font
 
 root = tk.Tk()
 root.title('Google-bot')
+root.resizable(width=False, height=False)
+root.minsize(width=500, height=400)
+
 
 def xmlpath():
     if platform.system() == "Linux":
@@ -18,17 +22,18 @@ def xmlpath():
 
 ROOT_PATH=os.getcwd() + xmlpath()
 
+
 class But_start:
     def __init__(self):
+        butfont = font.Font(family='Ubuntu', size=12)
         self.but = tk.Button(niz,
                             text="Start Bot",
-                            width=10, height=3,
-                            bg="green", fg="black")
+                            width=12, height=3,
+                            bg="green", fg="white", font=butfont)
         self.but.bind("<Button-1>", self.startBot)
         self.but.pack()
 
     def startBot(self, event):
-
         BaseTest.unittest.TextTestRunner().run(suite())
         Statistic()
 
@@ -47,13 +52,13 @@ body.grid(row=2)
 niz.grid(row=3)
 
 
-
 class Settings:
     def __init__(self, place):
+        butfont = font.Font(family='Ubuntu', size=10)
         self.but = tk.Button(place,
                               text="Settings",
                               width=8, height=1,
-                              bg="green", fg="black")
+                              bg="green", fg="white", font=butfont)
 
         self.but.bind("<Button-1>", self.openSettings)
         self.but.grid(row=1, column=2)
@@ -68,10 +73,11 @@ class Settings:
 
 class mainWindowBtn:
     def __init__(self, place):
+        butfont = font.Font(family='Ubuntu', size=10)
         self.but = tk.Button(place,
                           text="Main",
                           width=8, height=1,
-                          bg="green", fg="black")
+                          bg="green", fg="white", font=butfont)
 
         self.but.bind("<Button-1>", self.mWindow)
         self.but.grid(row=1, column=1)
@@ -97,12 +103,23 @@ class Statistic:
     def __init__(self):
         body.grid_forget()
         niz.grid_forget()
-        file = open(ROOT_PATH + 'Statistic.txt', 'r')
-        notPostedL = tk.Label(statisticBody, text= file.read() + " groups", font="Arial 12")
-        notPostedL.grid(row=3, column=1, columnspan=2)
         statisticBody.grid(row=2)
         statisticNiz.grid(row=3)
 
+        appHighlightFont = font.Font(family='Helvetica', size=12, weight='bold')
+        file = open(ROOT_PATH + 'Statistic.txt', 'r')
+        notPostedL = tk.Label(statisticBody, text= file.read() + " groups", font=appHighlightFont)
+        notPostedL.grid(row=1, column=2, columnspan=2)
+        but = tk.Button(statisticNiz,
+                            text="Repeat",
+                            width=8, height=3,
+                            bg="green", fg="black")
+        but.bind("<Button-1>", self.repeat)
+        but.grid(row=1, column=2, columnspan=2)
+
+
+    def repeat(self, event):
+        print "Hi"
 
 
 

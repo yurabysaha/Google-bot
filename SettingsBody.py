@@ -4,6 +4,10 @@ import Tkinter as tk
 import platform
 
 import xml.etree.ElementTree as ET
+
+from tkinter import font
+
+
 def xmlpath():
     if platform.system() == "Linux":
         return '/'
@@ -53,10 +57,11 @@ class UserFields:
         title = tk.Label(body, text="Password", font="Arial 12")
         title.grid(row=6, column=1)
 
+        butfont = font.Font(family='Ubuntu', size=10)
         but = tk.Button(niz,
                           text="Update",
                           width=6, height=1,
-                          bg="red", fg="black")
+                          bg="red", fg="white", font=butfont)
 
         but.bind("<Button-1>", self.updateUser)
         but.grid(row=1, column=3)

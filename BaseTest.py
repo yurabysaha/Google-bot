@@ -13,6 +13,7 @@ import unittest
 from xml.etree import ElementTree
 from xml.dom import minidom
 
+
 def xmlpath():
     if platform.system() == "Linux":
         return '/'
@@ -27,6 +28,7 @@ def osw():
         return ROOT_PATH + 'chromedriver'
     else:
         return ROOT_PATH + 'chromedriver.exe'
+
 
 class RobotTest(unittest.TestCase):
     def setUp(self):
@@ -134,6 +136,7 @@ class RobotTest(unittest.TestCase):
         text_file.close()
 
         driver.close()
+
 
 def suite():
     test_suite = unittest.TestSuite()
