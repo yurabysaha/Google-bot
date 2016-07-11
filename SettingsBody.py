@@ -32,6 +32,10 @@ class UserFields:
         mail = doc.find('email').text
         password = doc.find('password').text
 
+        if mail == None or password == None:
+            mail = ''
+            password = ''
+
         titleEmail = tk.Label(body, text="Email : " + mail, font="Arial 12")
         titleEmail.grid(row=2, column=1, columnspan=2)
 
