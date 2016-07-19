@@ -81,7 +81,13 @@ class RobotTest(unittest.TestCase):
 
         except:
             pass
-
+        #Change page
+        change_btn = driver.find_element_by_css_selector(".gb_3a.gbii")
+        change_btn.click()
+        time.sleep(2)
+        think_mobiles = driver.find_element_by_xpath(".//div[@class='multiLogin']/div/a[2]/div/div[1]/text()")
+        think_mobiles.click()
+        time.sleep(2)
         tree22 = ET.parse(ROOT_PATH + 'groupLink.xml')
         lstgroup = tree22.findall('glink')
         not_posted_doc = ET.parse(ROOT_PATH + 'link.xml')
