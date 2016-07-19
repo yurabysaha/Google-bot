@@ -4,7 +4,6 @@ import Tkinter as tk
 import platform
 import xml.etree.ElementTree as ET
 
-from tkinter import font
 
 
 def xmlpath():
@@ -24,11 +23,11 @@ class GroupLinkField:
 
         title = tk.Label(body, text="Group Link", font="Arial 12")
         title.grid(row = 2, column = 1)
-        butfont = font.Font(family='Ubuntu', size=10)
+        #butfont = font.Font(family='Ubuntu', size=10)
         but = tk.Button(body,
                      text="Update",
                      width=6, height=1,
-                     bg="red", fg="white", font=butfont)
+                     bg="red", fg="white")
         but.bind("<Button-1>", self.updateGroup)
         but.grid(row=2, column=3)
 

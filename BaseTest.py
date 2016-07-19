@@ -84,6 +84,8 @@ class RobotTest(unittest.TestCase):
 
         tree22 = ET.parse(ROOT_PATH + 'groupLink.xml')
         lstgroup = tree22.findall('glink')
+        not_posted_doc = ET.parse(ROOT_PATH + 'link.xml')
+        root = not_posted_doc.getroot()
         not_posted = 0
         posted = 0
         for i in lstgroup:
@@ -121,12 +123,11 @@ class RobotTest(unittest.TestCase):
                 posted = posted + 1
 
             except:
-                doc = ET.parse(ROOT_PATH + 'link.xml')
-                root = doc.getroot()
+
                 new = ET.Element('glink')
                 new.text = grouplinks
                 root.append(new)
-                doc.write(ROOT_PATH + 'link.xml', encoding="utf-8", xml_declaration=True)
+                not_posted_doc.write(ROOT_PATH + 'link.xml', encoding="utf-8", xml_declaration=True)
                 not_posted = not_posted +1
                 continue
 
