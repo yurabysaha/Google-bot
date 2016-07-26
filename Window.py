@@ -1,5 +1,6 @@
 import SettingsBody
 from BaseTest import *
+
 from UpdatePictureLink import *
 import BaseTest
 from UpdateGroupLink import *
@@ -38,14 +39,25 @@ class But_start:
         Statistic()
 
 
-menu = tk.Frame(root, width=700, height=27, bg="darkred")
+menu = tk.Frame(root, width=700, height=27)
 body = tk.Frame(root, width=500, height=200)
-niz = tk.Frame(root, width=500, height=150, bg="darkblue")
+niz = tk.Frame(root, width=500, height=150)
 Settingsbody = tk.Frame(root, width=500, height=200)
 Settingsniz = tk.Frame(root, width=500, height=150)
 statisticBody =  tk.Frame(root, width=500, height=200)
 statisticNiz = tk.Frame(root, width=500, height=150)
 menu.grid(row=1, sticky='W')
+var1 = tk.IntVar()
+
+def check():
+    text_file = open(ROOT_PATH + "Check.txt", "w")
+    fuck = var1.get().__str__()
+    text_file.write(fuck)
+    text_file.close()
+    print fuck
+
+tk.Checkbutton(niz, text='ThinkMobiles page', variable=var1, command=check, onvalue=1, offvalue=0).pack()
+check()
 
 
 body.grid(row=2)
@@ -96,8 +108,8 @@ class mWindow:
         UpdateLink(body)
         GroupLinkField(body)
         UpdateText(body)
-        But_start()
 
+        But_start()
 
 class Statistic:
     def __init__(self):
